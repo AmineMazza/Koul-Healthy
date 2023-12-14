@@ -35,19 +35,19 @@ NPM dependencies
 npm install
 ```
 
-# Générez une nouvelle clé de cryptage
+Générez une nouvelle clé de cryptage
 
 ```
 php artisan key:generate
 ```
 
-# Configurez votre base de données
+Configurez votre base de données
 
 ```
 nano .env
 ```
 
-# Exécutez les migrations
+Exécutez les migrations
 
 ```
 php artisan migrate
