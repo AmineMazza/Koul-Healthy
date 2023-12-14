@@ -35,6 +35,20 @@ NPM dependencies
 npm install
 ```
 
-## License
+# Générez une nouvelle clé de cryptage
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+php artisan key:generate
+```
+
+# Configurez votre base de données
+
+```
+nano .env
+```
+
+# Exécutez les migrations
+
+```
+php artisan migrate
+```
