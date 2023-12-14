@@ -21,12 +21,6 @@ composer update/install
 composer install
 ```
 
-NPM dependencies
-
-```
-npm install
-```
-
 Générez une nouvelle clé de cryptage
 
 ```
