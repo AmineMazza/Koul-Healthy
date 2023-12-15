@@ -30,7 +30,7 @@ php artisan key:generate
 Configurez votre base de données
 
 ```
-nano .env
+copy .env.example .env
 ```
 
 Exécutez les migrations
