@@ -27,10 +27,21 @@ Générez une nouvelle clé de cryptage
 php artisan key:generate
 ```
 
-Configurez votre base de données
+Copy le fichier .env
 
 ```
 copy .env.example .env
+```
+
+Configurez votre base de données
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=koul-healthy
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
 Exécutez les migrations
