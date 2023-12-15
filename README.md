@@ -38,3 +38,9 @@ Exécutez les migrations
 ```
 php artisan migrate
 ```
+
+Lancer le serveur
+
+```
+php artisan serve
+```
