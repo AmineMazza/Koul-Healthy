@@ -49,7 +49,7 @@ Exécutez les migrations
 ```
 php artisan migrate
 ```
-Exécuter seeder dans la BD
+Exécuter seeders dans la BD
 ```
 php artisan db:seed --class=ProductSeeder
 php artisan db:seed --class=UserSeeder
