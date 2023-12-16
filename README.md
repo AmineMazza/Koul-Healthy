@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/KoulHelthy.jpg" width="400" height="300px" alt="KoulHeaulthy Logo"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/KoulHelthy.jpg" width="400" height="400px" alt="KoulHeaulthy Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -21,26 +21,37 @@ composer update/install
 composer install
 ```
 
-NPM dependencies
-
-```
-npm install
-```
-
 Générez une nouvelle clé de cryptage
 
 ```
 php artisan key:generate
 ```
 
+Copy le fichier .env
+
+```
+copy .env.example .env
+```
+
 Configurez votre base de données
 
 ```
-nano .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=koul-healthy
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
 Exécutez les migrations
 
 ```
 php artisan migrate
+```
+
+Lancer le serveur
+
+```
+php artisan serve
 ```
