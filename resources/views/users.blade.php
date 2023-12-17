@@ -16,22 +16,31 @@
         <tr>
             <th>Id</th>
             <th>name</th>
-            <th>Adresse_Livraision</th>
+            <th>Role</th>
+            <th>email</th>
             <th>Tel</th>
             <th>Ville</th>
-            <th>email</th>
+            <th>Adresse_Livraision</th>
         </tr>
-       
+        
         @foreach ($users as $user)
-            <tr>
-                <td>{{$user->id}}</td>
-                <td>{{Str::limit($user->name,15)}}</td>
-                <td>{{Str::limit($user->Adresse_Livraision,50)}}</td>
-                <td>{{$user->Tel}}</td>
-                <td>{{$user->Ville}}</td>
-                <td>{{$user->email}}</td>
-            </tr>
+            @if($user->role=='GérantResto')
+                <tr>
+                <!-- Affiche du contenu réservé aux administrateurs -->
+                    <td>{{$user->id}}</td>
+                    <td>{{Str::limit($user->name,15)}}</td>
+                    <td>{{$user->role}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->tel}}</td>
+                    <td>{{$user->city}}</td>
+                    <td>{{Str::limit($user->address,50)}}</td>
+                </tr>
+            @endif     
         @endforeach
+
+
+   
+        
     </table>
     {{-- {{$users->links()}} --}}
 </body>

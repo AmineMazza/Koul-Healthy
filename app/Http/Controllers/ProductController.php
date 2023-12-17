@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         //pour afficher juste 5 elements par page :
         $products = Product::paginate(5);
-        return view('products', compact('products'));
+        return view('products.show', compact('products'));
     }
 
     /**
@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // 
+
     }
 
     /**

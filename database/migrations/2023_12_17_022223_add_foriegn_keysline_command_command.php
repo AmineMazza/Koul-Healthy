@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('image');
-            $table->text('description');
-            $table->float('price');
-            $table->timestamps();
+        Schema::table('line_commandes', function (Blueprint $table) {
+            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade'); 
         });
     }
 
@@ -26,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        //
     }
 };

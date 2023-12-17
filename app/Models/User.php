@@ -21,7 +21,24 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'tel', 
+        'city', 
+        'role',
+        
     ];
+    
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+    
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class);
+    }
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +59,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
 }

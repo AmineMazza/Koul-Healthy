@@ -23,10 +23,10 @@
         @foreach ($products as $product)
             <tr>
                 <td>{{$product->id}}</td>
-                <td>{{$product->titre}}</td>
                 {{-- pour limiter la longueur de la description à 100 caractères --}}
+                <td>{{Str::limit($product->title,20)}}</td>
                 <td>{{Str::limit($product->description,100)}}</td>
-                <td>{{$product->prix}}</td>
+                <td>{{$product->price}}</td>
             </tr>
         @endforeach
     </table>

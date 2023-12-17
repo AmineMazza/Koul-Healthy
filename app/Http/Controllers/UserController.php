@@ -11,9 +11,9 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function getUser(){
-        $users = User::all();
         //pour afficher juste 5 elements par page :
         // $users = User::paginate(5);
+        $users = User::all();
         return view('users', compact('users'));
     }
 

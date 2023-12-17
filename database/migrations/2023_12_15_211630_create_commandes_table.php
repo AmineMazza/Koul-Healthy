@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('etat_Commande');
+            $table->date('date_commande');
+            $table->string('statut_commande');
             $table->timestamps();
         });
     }
