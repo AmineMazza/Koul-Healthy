@@ -1,47 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+@extends('Dashboard.ElementsFix')
+@include('Dashboard.navbar')
 
-</head>
-<body>
-    <h1 class="text-center">Users Page</h1>
+<div class="layout-page"> 
+    <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y"Body - >
+            <h1 class="text-center">Les gérants de restaurants</h1>
 
-    <table class="table-auto">
+            <table class="table-auto">
 
-        <tr>
-            <th>Id</th>
-            <th>name</th>
-            <th>Role</th>
-            <th>email</th>
-            <th>Tel</th>
-            <th>Ville</th>
-            <th>Adresse_Livraision</th>
-        </tr>
-        
-        @foreach ($users as $user)
-            @if($user->role=='GérantResto')
                 <tr>
-                <!-- Affiche du contenu réservé aux administrateurs -->
-                    <td>{{$user->id}}</td>
-                    <td>{{Str::limit($user->name,15)}}</td>
-                    <td>{{$user->role}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->tel}}</td>
-                    <td>{{$user->city}}</td>
-                    <td>{{Str::limit($user->address,50)}}</td>
+                    <th>name</th>
+                    <th>Role</th>
+                    <th>email</th>
+                    <th>Tel</th>
+                    <th>Ville</th>
+                    <th>Adresse_Livraision</th>
                 </tr>
-            @endif     
-        @endforeach
+                
+                @foreach ($users as $user)
+                    @if($user->role=='GérantResto')
+                        <tr>
+                        <!-- Affiche du contenu réservé aux administrateurs -->
+                            <td>{{Str::limit($user->name,20)}}</td>
+                            <td>{{$user->role}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->tel}}</td>
+                            <td>{{$user->city}}</td>
+                            <td>{{Str::limit($user->address,30)}}</td>
+                        </tr>
+                    @endif     
+                @endforeach
 
 
-   
         
-    </table>
-    {{-- {{$users->links()}} --}}
-</body>
-</html>
+                
+            </table>
+            {{-- {{$users->links()}} --}}
+        </div>
+    </div>    
+</div>
+

@@ -21,7 +21,6 @@ class ProductFactory extends Factory
             'image' => fake()->image(),
             'description' => fake()->text(),
             'price' => fake()->numberBetween(10, 100),
-            'Is_Favoris' => fake()->boolean(0),
         ];
     }
 }
