@@ -13,6 +13,7 @@ class UserController extends Controller
     public function getUser(){
         //pour afficher juste 5 elements par page :
         // $users = User::paginate(5);
+        
         $users = User::all();
         return view('users.show', compact('users'));
     }

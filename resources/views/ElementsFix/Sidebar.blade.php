@@ -62,7 +62,7 @@
           <div class="app-brand demo">
             <a href="{{ route('home.index') }}" class="app-brand-link">
               <!-- <link rel="logo" type="image" href="assets/img/logo-koulHealty/KoulHelthy.jpg" /> -->
-              <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 126px; width: 180px;" alt="">
+              <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 129px; width: 150px; margin-left: 20px" alt="">
               {{-- <span class="app-brand-text demo menu-text ms-2">Koul Healthy</span>  --}}
             </a>
 

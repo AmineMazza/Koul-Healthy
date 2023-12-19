@@ -12,7 +12,7 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        $commandes = commande::paginate(5);
+        $commandes = commande::all();
         return view('commandes.show', compact('commandes'));
     }
 
