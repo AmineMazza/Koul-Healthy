@@ -1,4 +1,4 @@
-@extends('ElementsFix.Sidebar')
+@include('ElementsFix.Sidebar')
 @include('ElementsFix.Navbar')
 
 <div class="layout-page"> 

@@ -1,7 +1,3 @@
-{{-- <a class="nav-link active" href="{{ route('products.index') }}">Products</a>
-<a class="nav-link" href="{{ route('users') }}">Users</a>
-<a class="nav-link" href="{{ route('products') }}">Products from API</a> --}}
-
 <!DOCTYPE html>
 
 <html
@@ -18,12 +14,13 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Dashboard - Koul Healthy </title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,11 +50,8 @@
   </head>
 
   <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        <!-- Menu -->
 
+        <!-- SideBar -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="{{ route('home.index') }}" class="app-brand-link">
@@ -152,37 +146,10 @@
                 </li>
               </ul>
           </li>
-
-       
           </ul>
         </aside>
-        <!-- / Menu -->
+        <!-- / SideBar -->
 
-        <!-- Layout container -->
-        <div class="layout-page">
-          <!-- Navbar -->
-          <!-- / Navbar -->
-
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-        <!-- Body Content -->
-            {{-- <div class="container-xxl flex-grow-1 container-p-y"Body - >
-              <div class="row ">
-                </div>
-            </div> --}}
-        <!-- / Body Content -->
-
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
-      </div>
-
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
