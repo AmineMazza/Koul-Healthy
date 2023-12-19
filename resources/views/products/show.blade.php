@@ -3,10 +3,7 @@
 
 <div class="layout-page"> 
     <div class="content-wrapper">
-        <div class="container-xxl flex-grow-1 container-p-y"Body - >
-                <h1 class="text-center">Tous les produits</h1>
-            
-               
+        <div class="container-xxl flex-grow-1 container-p-y"Body - >               
 
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <h4 class="py-3 mb-4"><span class="text-muted fw-light">Produits / </span>Tous les produits</h4>

@@ -22,7 +22,8 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}"" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,7 +62,7 @@
           <div class="app-brand demo">
             <a href="{{ route('home.index') }}" class="app-brand-link">
               <!-- <link rel="logo" type="image" href="assets/img/logo-koulHealty/KoulHelthy.jpg" /> -->
-              <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 80px; width: 80px;" alt="">
+              <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 126px; width: 180px;" alt="">
               {{-- <span class="app-brand-text demo menu-text ms-2">Koul Healthy</span>  --}}
             </a>
 

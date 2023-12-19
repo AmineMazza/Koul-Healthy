@@ -4,10 +4,7 @@
 <div class="layout-page"> 
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y"Body - >
-                <h1 class="text-center">Tous les commandes</h1>
             
-               
-
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <h4 class="py-3 mb-4"><span class="text-muted fw-light">Commandes / </span>Tous les commandes</h4>
       
