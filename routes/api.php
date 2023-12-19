@@ -22,6 +22,10 @@ Route::get("/products",[ProductController::class,"getProduct"])->name("products"
 // Creer un produit :
 Route::post('/products/create', [ProductController::class,'create']);
 
+// Modifier un produit :
+Route::put('/products/edit/{id}', [ProductController::class,'update']);
+
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
