@@ -18,17 +18,23 @@ class ProductController extends Controller
     }
 
     public function create(){
-        $product = new Product();
+        try {
+            $product = new Product();
 
-        $product->titre = 'Titre Test';
-        $product->image = '0';
-        $product->description = 'description Test';
-        $product->prix = 400;
-        $product->save();
-
-        return response()->json([
-            "status"=>"200, Produit Ajouté avec succés",
-            "product"=>$product,
-        ]);
+            $product->title = 'Titre Test';
+            $product->image = '0';
+            $product->description = 'description Test';
+            $product->price = 400;
+            $product->save();
+    
+            return response()->json([
+                "status"=>"200, Produit Ajouté avec succés",
+                "product"=>$product,
+            ]);       
+        } 
+        catch (\Throwable $th) {
+            throw $th;
+        }
+      
     }
 }
