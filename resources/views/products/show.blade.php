@@ -1,5 +1,5 @@
-@extends('Dashboard.ElementsFix')
-@include('Dashboard.navbar')
+@extends('ElementsFix.Sidebar')
+@include('ElementsFix.Navbar')
 
 <div class="layout-page"> 
     <div class="content-wrapper">
