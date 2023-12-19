@@ -1,6 +1,9 @@
 @include('ElementsFix.Sidebar')
 @include('ElementsFix.Navbar')
 
+<title>Gérants</title>
+
+
 <div class="layout-page"> 
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y"Body - >
