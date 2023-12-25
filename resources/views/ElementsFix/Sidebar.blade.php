@@ -73,7 +73,7 @@
                 <div data-i18n="Dashboards">Dashboard</div>
               </a>
             </li>
-
+            @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-category-alt'></i>
@@ -98,8 +98,10 @@
                 </li>
               </ul>
             </li>
-
+            
+            @endif
             <!-- Layouts -->
+            
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-bowl-rice'></i>
@@ -114,7 +116,7 @@
                 </li>
               </ul>
             </li>
-
+            
             <!-- Front Pages -->
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -131,6 +133,7 @@
             </li>
 
             <!-- Users Pages -->
+            @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user'></i>
@@ -144,6 +147,7 @@
                 </li>
               </ul>
           </li>
+          @endif
           </ul>
         </aside>
         <!-- / SideBar -->
