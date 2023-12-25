@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\AuthApicontroller;
 use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,15 @@ Route::put('/products/edit/{id}', [ProductController::class,'update']);
 
 
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    //liste des categories
+    Route::get('/categories', [CategoryController::class, 'getCategories'])->name("categories");
+
+// Endpoint pour créer une nouvelle catégorie
+Route::post('/categories/create', [CategoryController::class, 'create']);
+
+// Endpoint pour mettre à jour une catégorie existante
+Route::put('/categories/update/{id}', [CategoryController::class, 'update']);
+
 });

@@ -4,6 +4,7 @@ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 
 
@@ -28,8 +29,6 @@ use App\Http\Controllers\UserController;
 
 Route::get('/dashboard', [HomeController::class,'index'])->middleware('admin')->name('home.index');
 
-
-
 Route::get('/', [HomeController::class,'login']);
 Route::get('/register', [HomeController::class,'register']);
 Route::post('/vregister', [HomeController::class,'vregister']);
@@ -44,6 +43,30 @@ Route::get('/product/{id}', [ProductController::class,'show'])->name('product.sh
 Route::get('/product/{id}/edit', [ProductController::class,'edit'])->name('product.edit');
 Route::get('/product/{id}/update', [ProductController::class,'update'])->name('product.update');
 Route::get("/products/{id}/delete", [ProductController::class,'destroy'])->name('product.delete');
+
+
+
+// Route pour afficher la liste des catégories
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+
+// Route pour afficher le formulaire de création de catégorie
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
+// Route pour stocker une nouvelle catégorie
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+// Route pour afficher les détails d'une catégorie
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+// Route pour afficher le formulaire d'édition d'une catégorie
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+
+// Route pour mettre à jour une catégorie
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+// Route pour supprimer une catégorie
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
 
 
 Route::get('/commandes', [CommandeController::class,'index'])->name('commandes.index');

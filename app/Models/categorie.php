@@ -9,10 +9,8 @@ class categorie extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nom_categorie',
-        'image_categorie'
-    ];
+    protected $fillable = ['titre', 'image'];
+
 
     public function produits()
     {
