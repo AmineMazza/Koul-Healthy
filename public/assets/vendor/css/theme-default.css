@@ -255,12 +255,12 @@ button.list-group-item-primary.active {
     color: #fff;
     background-color: #fc5c11;
     border-color: #fc5c11;
-    box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 255, 105, 0.726);
 }
 .btn-primary:hover {
     color: #fff !important;
-    background-color: #5f61e6 !important;
-    border-color: #5f61e6 !important;
+    background-color: #169921d0 !important;
+    border-color: #169921d0 !important;
     transform: translateY(-1px) !important;
 }
 .btn-check:focus + .btn-primary,
