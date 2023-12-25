@@ -32,13 +32,8 @@
                                       {{-- <td>{{$product->id}}</td> --}}
                                         <td>
                                           {{-- {{$product->image}} --}}
-                                          @if ($product->image)
-                                              @foreach (json_decode($product->image) as $image)
-                                                  <img style="width: 180px; height: 130px; border-radius: 5%;" src="{{ asset('storage/' . $image) }}">
-                                              @endforeach
-                                          @endif
-                                      
-                                      
+                                          {{-- <img src="{{ asset('img/products/' . $product->image) }}" alt="{{ $product->title }}" style="max-width: 100px; max-height: 100px;"> --}}
+                                          <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" style="width: 180px; height: 130px; border-radius: 5%;">
                                         </td>
                                         <td>{{Str::limit($product->title,20)}}</td>
                                         <td>{{Str::limit($product->description,50)}}</td>

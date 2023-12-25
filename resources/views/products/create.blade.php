@@ -40,9 +40,9 @@
                             <input type="number" step="0.01" class="form-control" id="price" name="price" required>
                         </div>
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Image</label>
-                            {{-- <input class="form-control" type="file" id="image" /> --}}
-                            <input type="file" class="form-control" name="images[]" id="images" accept="image/*" multiple required>
+                            <label for="formFile" class="form-label">Image</label>                             
+                            <input type="file" class="form-control" id="image" name="image" />
+                            {{-- <input type="file" class="form-control" name="images[]" id="images" accept="image/*" multiple required> --}}
                           </div>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>

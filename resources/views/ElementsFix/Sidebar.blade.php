@@ -52,7 +52,7 @@
         <!-- SideBar -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="{{ route('home.index') }}" class="app-brand-link">
+            <a href="/dashboard" class="app-brand-link">
               <!-- <link rel="logo" type="image" href="assets/img/logo-koulHealty/KoulHelthy.jpg" /> -->
               <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 129px; width: 150px; margin-left: 20px" alt="">
               {{-- <span class="app-brand-text demo menu-text ms-2">Koul Healthy</span>  --}}

@@ -30,35 +30,25 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'title' => 'required',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'required',
-            'price' => 'required|numeric',
-        ]);
-
-        $product = new Product();
-        $product->title = $request->title;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        
-      
-        if ($request->hasFile('images')) {
-            $images = [];
-            foreach ($request->file('images') as $image) {
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->storeAs('images_upload', $imageName, 'public');
-                $images[] = $imageName;
-            }
-            // stocker les noms des fichiers d'images dans un format JSON dans la base de données.
-            $product->image = json_encode($images); 
+        $filename = '';
+    
+        if ($request->hasFile('image')) {
+            $filename = '/assets/img/products/' . time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img/products/'), $filename);
         }
-        
-        $product->save();
-
+    
+        // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
+        $product = Product::create([
+            'title' => $request->input('title'), // Utilisez input pour récupérer la valeur du champ titre
+            'description' => $request->input('description'), // Utilisez input pour récupérer la valeur du champ titre
+            'price' => $request->input('price'), // Utilisez input pour récupérer la valeur du champ titre
+            'image' => $filename,
+        ]);
+    
+        // Redirection vers la vue des catégories
         return redirect()->route('products.index')->with('success', 'Produit créé avec succès');
     }
 
@@ -96,6 +86,42 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->update($request->all());
 
+        return redirect()->route('products.index')->with('success', 'Produit mis à jour avec succès');
+    }
+
+    public function update2(Request $request, string $id)
+    {
+        $product = Product::findOrFail($id);
+    
+        // Validation des données
+        $this->validate($request, [
+            'titre' => 'required|string',
+            'new_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Vous pouvez rendre l'image facultative
+            // Ajoutez d'autres règles de validation au besoin
+        ]);
+    
+        // Mise à jour des informations de la catégorie
+        $filename = $product->image;
+    
+        if ($request->hasFile('new_image')) {
+            // Supprimez l'ancienne image s'il y en a une
+            if ($filename && file_exists(public_path($filename))) {
+                unlink(public_path($filename));
+            }
+    
+            $filename = '/assets/img/products/' . time() . '.' . $request->new_image->extension();
+            $request->new_image->move(public_path('assets/img/products/'), $filename);
+        }
+    
+        $product->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $filename,
+            // Mettez à jour d'autres attributs au besoin
+        ]);
+    
+        // Redirection vers la vue des catégories
         return redirect()->route('products.index')->with('success', 'Produit mis à jour avec succès');
     }
 

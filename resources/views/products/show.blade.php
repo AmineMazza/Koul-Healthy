@@ -10,9 +10,7 @@
     <h1>Détails du Produit {{ $product->title }}</h1>
     {{-- <p><strong>Image :</strong> --}}
         @if ($product->image)
-            @foreach (json_decode($product->image) as $image)
-                <img style="width: 380px; height: 270px; border-radius: 5%;" src="{{ asset('storage/' . $image) }}">
-            @endforeach
+        <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" style="width: 380px; height: 270px; border-radius: 5%;">
         @endif
     </p>
         <p><strong>Nom :</strong> {{ $product->title }}</p>
