@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        Schema::table('products', function (Blueprint $table) {            
+            $table->unsignedBigInteger('gerantAdmin_id')->nullable();
+            $table->foreign('gerantAdmin_id')->references('id')->on('gerant_admins')->onDelete('cascade');  
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('gerant_admin', function (Blueprint $table) {
+            //
+        });
     }
 };

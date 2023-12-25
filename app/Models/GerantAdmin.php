@@ -30,4 +30,10 @@ class GerantAdmin extends Authenticatable
     return $this->role === 'gerant';
 }
 
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }
