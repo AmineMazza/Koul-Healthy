@@ -29,7 +29,7 @@
        <li class="nav-item navbar-dropdown dropdown-user dropdown">
          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
            <div class="avatar avatar-online">
-             <img src="assets/img/logo-koulHealty/user.png" alt class="w-px-40 h-auto rounded-circle" />
+             <img src="{{ asset('assets/img/logo-koulHealty/user.png') }}" alt class="w-px-40 h-auto rounded-circle" />
            </div>
          </a>
          <ul class="dropdown-menu dropdown-menu-end">

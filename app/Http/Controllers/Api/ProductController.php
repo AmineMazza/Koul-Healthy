@@ -13,7 +13,9 @@ class ProductController extends Controller
 {   
 
     public function getProduct(){
+
         $products = Product::all();
+        
         return response()->json([
             "products"=>$products,
             "status"=>"200, Kulchi Nadi",

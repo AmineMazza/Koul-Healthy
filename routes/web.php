@@ -28,8 +28,15 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class,'index'])->name('home.index');
 
+Route::resource('products',ProductController::class);
 Route::get('/products', [ProductController::class,'index'])->name('products.index');
-// Route::get('/products/create', [ProductController::class,'create'])->name('products.create');
+Route::get('/products/create', [ProductController::class,'create'])->name('product.create');
+Route::post('/products/store', [ProductController::class,'store'])->name('product.store');
+Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
+Route::get('/product/{id}/edit', [ProductController::class,'edit'])->name('product.edit');
+Route::get('/product/{id}/update', [ProductController::class,'update'])->name('product.update');
+Route::get("/products/{id}/delete", [ProductController::class,'destroy'])->name('product.delete');
+
 
 Route::get('/commandes', [CommandeController::class,'index'])->name('commandes.index');
 
