@@ -26,7 +26,15 @@ use App\Http\Controllers\UserController;
 //     return view('Product');
 // });
 
-Route::get('/', [HomeController::class,'index'])->name('home.index');
+Route::get('/dashboard', [HomeController::class,'index'])->middleware('admin')->name('home.index');
+
+
+
+Route::get('/', [HomeController::class,'login']);
+Route::get('/register', [HomeController::class,'register']);
+Route::post('/vregister', [HomeController::class,'vregister']);
+Route::post('/vlogin', [HomeController::class,'valogin']);
+Route::post('/logout', [HomeController::class, 'logout'])->middleware('admin')->name('logout');
 
 Route::get('/products', [ProductController::class,'index'])->name('products.index');
 // Route::get('/products/create', [ProductController::class,'create'])->name('products.create');
