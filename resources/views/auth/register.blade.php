@@ -1,37 +1,4 @@
-
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <html lang="en" class="light-style layout-wide  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
@@ -39,7 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Register </title>
+    <title>Register</title>
+    <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
+
 
     
     <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
@@ -55,9 +24,7 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-5DDHKGP');</script>
     <!-- End Google Tag Manager -->
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+  
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,7 +75,7 @@
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center">
-            <a href="index.html" class="app-brand-link gap-2">
+            <a href="#" class="app-brand-link gap-2">
               <span class="app-brand-logo demo">
 
 
@@ -126,7 +93,7 @@
     @csrf
     
     <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
+        <label for="username" class="form-label">Nom d'utilisateur</label>
         <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Enter your username" autofocus>
         @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -142,7 +109,7 @@
     </div>
 
     <div class="mb-3 form-password-toggle">
-        <label class="form-label" for="password">Password</label>
+        <label class="form-label" for="password">MOT DE PASSE</label>
         <div class="input-group input-group-merge">
             <input type="password" id="password" class="form-control" value="{{ old('password') }}" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
             <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
@@ -156,8 +123,8 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms">
             <label class="form-check-label" for="terms-conditions">
-                I agree to
-                <a href="javascript:void(0);">privacy policy & terms</a>
+              J’accepte 
+                <a href="javascript:void(0);">la politique de confidentialité</a>
             </label>
         </div>
         @error('terms')
@@ -166,15 +133,15 @@
     </div>
 
     <button type="submit" class="btn btn-primary d-grid w-100">
-        Sign up
+      S'inscrire
     </button>
 </form>
 
 
           <p class="text-center">
-            <span>Already have an account?</span>
-            <a href="http://127.0.0.1:8000/login">
-              <span>Sign in instead</span>
+            <span>Vous avez déjà un compte ?</span>
+            <a href="http://127.0.0.1:8000/">
+              <span>connectez-vous</span>
             </a>
           </p>
         </div>
@@ -185,13 +152,6 @@
 </div>
 
 <!-- / Content -->
-
-  
-
-  
-  <div class="buy-now">
-    <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-  </div>
   
 
   <!-- Core JS -->

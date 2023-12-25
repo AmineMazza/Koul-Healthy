@@ -7,6 +7,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Login</title>
+    <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -25,8 +28,6 @@
       })(window,document,'script','dataLayer','GTM-5DDHKGP');</script>
     <!-- End Google Tag Manager -->
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +76,7 @@
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center">
-            <a href="index.html" class="app-brand-link gap-2">
+            <a href="" class="app-brand-link gap-2">
               <span class="app-brand-logo demo">
 
 </span>
@@ -110,14 +111,14 @@
           <form id="formAuthentication" method="post" action="{{url('vlogin')}}"  class="mb-3" action="">
           @csrf
             <div class="mb-3">
-              <label for="email" class="form-label">Email or Username</label>
+              <label for="email" class="form-label">E-MAIL</label>
               <input type="email" class="form-control"  name="email" value="{{ session('email') }}" placeholder="Enter your email or username" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password">MOT DE PASSE</label>
                 <a href="">
-                  <small>Forgot Password?</small>
+                  <small>Mot de passe oublié ?</small>
                 </a>
               </div>
               <div class="input-group input-group-merge">
@@ -131,19 +132,19 @@
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="remember-me">
                 <label class="form-check-label" for="remember-me">
-                  Remember Me
+                  Se souvenir de moi
                 </label>
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button class="btn btn-primary d-grid w-100" type="submit">se connecter</button>
             </div>
           </form>
 
           <p class="text-center">
-            <span>New on our platform?</span>
+            <span>Nouveau sur notre plateforme ?</span>
             <a href="http://127.0.0.1:8000/register">
-              <span>Create an account</span>
+              <span>créer un compte</span>
             </a>
           </p>
         </div>
@@ -154,13 +155,6 @@
 </div>
 
 <!-- / Content -->
-
-  
-
-  
-  <div class="buy-now">
-    <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-  </div>
   
 
   <!-- Core JS -->

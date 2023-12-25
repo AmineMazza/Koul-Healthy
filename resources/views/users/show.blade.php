@@ -26,7 +26,7 @@
                       </thead>
                       <tbody class="table-border-bottom-0">
                         @foreach ($users as $user)
-                            @if($user->role=='GérantResto')
+                            @if($user->role=='gerant')
                                 <tr>
                                 <td>{{Str::limit($user->name,20)}}</td>
                                 <td>{{$user->tel}}</td>
