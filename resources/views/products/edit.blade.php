@@ -12,7 +12,7 @@
 
     <form action="{{ route('product.update', $product->id) }}" method="POST">
         @csrf
-        @method('get')
+        @method('put')
         <div class="mb-3">
             <label for="title" class="form-label" >titre</label>
             <input type="text" class="form-control" value="{{ $product->title }}" id="title" name="title" required>
@@ -21,6 +21,13 @@
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control"  id="description" name="description">{{ $product->description }}
             </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Catégorie</label>
+            <select name="category_id" required  class="form-select" id="category_id" aria-label="Default select example">
+                    {{-- <option value="{{ $product->$category->id }}">{{ $category->titre }}</option> --}}
+                     <option value="{{$product->category->id}}">{{$product->category->titre}}</option>
+                </select>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Prix</label>
