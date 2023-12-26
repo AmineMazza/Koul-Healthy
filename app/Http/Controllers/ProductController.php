@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categorie;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = categorie::all();
+        return view('products.create', ['categories' => $categories]);
+
     }
 
     /**
@@ -33,23 +37,37 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $filename = '';
+        try {
+            $filename = '';
     
-        if ($request->hasFile('image')) {
-            $filename = '/assets/img/products/' . time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/img/products/'), $filename);
+            if ($request->hasFile('image')) {
+                $filename = '/assets/img/products/' . time() . '.' . $request->image->extension();
+                $request->image->move(public_path('assets/img/products/'), $filename);
+            }
+        
+            // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
+            $product = Product::create([
+                'title' => $request->input('title'), // Utilisez input pour récupérer la valeur du champ titre
+                'description' => $request->input('description'), // Utilisez input pour récupérer la valeur du champ titre
+                'category_id' => $request->input('category_id'),
+                'price' => $request->input('price'), // Utilisez input pour récupérer la valeur du champ titre
+                'image' => $filename,
+            ]);
+    
+            // Produit ajouté avec succès, définissez un message flash
+            session()->flash('success', 'Produit ajouté avec succès');
+    
+            // Redirigez l'utilisateur vers une autre page, par exemple la liste des produits
+            return redirect()->route('products.index')->with('success', 'Produit créé avec succès');
+
+        } catch (Exception $e) {
+            // En cas d'erreur, définissez un message flash d'erreur
+            session()->flash('error', 'Une erreur s\'est produite lors de l\'ajout du produit.');
+    
+            // Redirigez l'utilisateur vers une autre page, par exemple la page d'ajout de produit
+            return redirect()->route('products.create');
         }
-    
-        // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
-        $product = Product::create([
-            'title' => $request->input('title'), // Utilisez input pour récupérer la valeur du champ titre
-            'description' => $request->input('description'), // Utilisez input pour récupérer la valeur du champ titre
-            'price' => $request->input('price'), // Utilisez input pour récupérer la valeur du champ titre
-            'image' => $filename,
-        ]);
-    
         // Redirection vers la vue des catégories
-        return redirect()->route('products.index')->with('success', 'Produit créé avec succès');
     }
 
     /**
@@ -86,8 +104,9 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->update($request->all());
 
-        return redirect()->route('products.index')->with('success', 'Produit mis à jour avec succès');
+        return redirect()->route('products.index')->with('success', 'Produit modifié avec succès');
     }
+
 
     public function update2(Request $request, string $id)
     {
@@ -134,7 +153,7 @@ class ProductController extends Controller
         // return view('products.delete', compact('product'));
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Produit supprimé avec succès');
+        return redirect()->route('products.index')->with('error', 'Produit supprimé avec succès');
     }
 
 }

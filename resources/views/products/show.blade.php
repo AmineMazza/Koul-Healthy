@@ -15,6 +15,7 @@
     </p>
         <p><strong>Nom :</strong> {{ $product->title }}</p>
         <p><strong>Description :</strong> {{ $product->description }}</p>
+        <p><strong>Categorie :</strong> {{$product->category->titre}}</p>
         <p><strong>Prix :</strong> {{ $product->price }}</p>
     <a href="{{ route('products.index') }}">Retour à la Liste des Produits</a>
         </div>

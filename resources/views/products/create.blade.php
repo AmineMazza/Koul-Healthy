@@ -35,6 +35,23 @@
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Catégorie</label>
+                            <select name="category_id" required  class="form-select" id="category_id" aria-label="Default select example">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->titre }}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                        {{-- <div class="mb-3">
+                            <label for="category_id" class="form-label">Catégorie</label>
+                            <select name="category_id" required  class="form-control"> 
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->titre }}</option>
+                                @endforeach
+                            </select>
+                        </div>    --}}
                         <div class="mb-3">
                             <label for="price" class="form-label">Prix</label>
                             <input type="number" step="0.01" class="form-control" id="price" name="price" required>
