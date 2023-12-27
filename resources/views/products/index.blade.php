@@ -22,7 +22,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     <div class="card">
                       <h5 class="card-header">Produits                     
                         <a href="products/create" class="btn btn-danger">Ajouter</a>
@@ -73,6 +73,7 @@
                             @endforeach
                           </tbody>
                         </table>
+                        {{ $products->links() }}
                       </div>
                     </div>
                     <!--/ Basic Bootstrap Table -->
