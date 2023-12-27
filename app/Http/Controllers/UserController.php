@@ -15,7 +15,7 @@ class UserController extends Controller
         //pour afficher juste 5 elements par page :
         // $users = User::paginate(5);
         
-        $users = GerantAdmin::all();
+        $users = GerantAdmin::paginate(5);
         return view('users.show', compact('users'));
     }
 

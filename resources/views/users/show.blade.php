@@ -18,7 +18,7 @@
                       <thead>
                         <tr>
                           <th>Nom</th>
-                          <th>tel</th>
+                          {{-- <th>tel</th> --}}
                           <th>email</th>
                           <th>role</th>
                           <th>Actions</th>
@@ -29,7 +29,7 @@
                             @if($user->role=='gerant')
                                 <tr>
                                 <td>{{Str::limit($user->name,20)}}</td>
-                                <td>{{$user->tel}}</td>
+                                {{-- <td>{{$user->tel}}</td> --}}
                                 <td> {{$user->email}}</td>
                                 <td><span class="badge bg-label-primary me-1"> {{$user->role}}</span></td>
                                 <td>
@@ -48,6 +48,7 @@
                         @endforeach 
                       </tbody>
                     </table>
+                    {{ $users->links() }}
                   </div>
                 </div>
                 <!--/ Basic Bootstrap Table -->

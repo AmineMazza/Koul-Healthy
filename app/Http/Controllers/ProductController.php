@@ -15,9 +15,9 @@ class ProductController extends Controller
     public function index()
     {
         //pour afficher juste 5 elements par page :
-        // $products = Product::paginate(10);
+        $products = Product::paginate(5);
 
-        $products = Product::all();
+        // $products = Product::all();
         return view('products.index', compact('products'));
     }
 
