@@ -28,7 +28,6 @@ Route::post("/register",[AuthApicontroller::class,"register"]);
 Route::post("/login",[AuthApicontroller::class,"login"]);
 
 
-Route::middleware(['admin'])->group(function () {
     // Pour recuperer la liste des produits :
     Route::get("/products",[ProductController::class,"getProduct"])->name("products");
     // Creer un produit :
@@ -36,10 +35,9 @@ Route::middleware(['admin'])->group(function () {
 
     // Modifier un produit :
     Route::put('/products/edit/{id}', [ProductController::class,'update']);
-});
 
 
-Route::middleware(['admin'])->group(function () {
+
     //liste des categories
     Route::get('/categories', [CategoryController::class, 'getCategories'])->name("categories");
 
@@ -48,7 +46,7 @@ Route::middleware(['admin'])->group(function () {
     
     // Endpoint pour mettre à jour une catégorie existante
     Route::put('/categories/update/{id}', [CategoryController::class, 'update']);
-});  
+
 
 
 
