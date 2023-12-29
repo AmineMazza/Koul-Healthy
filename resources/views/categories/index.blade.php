@@ -10,7 +10,18 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="container-xxl flex-grow-1 container-p-y">
                 <h4 class="py-3 mb-4"><span class="text-muted fw-light">Catégories / </span>Toutes les catégories</h4>
-
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            
                 <!-- Basic Bootstrap Table -->
                 <div class="card">
                     <h5 class="card-header">Catégories</h5>
