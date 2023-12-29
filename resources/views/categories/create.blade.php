@@ -29,7 +29,6 @@
                     </div>
                 </div>
                 <a href="{{ route('categories.index') }}">Retour à la Liste des Catégories</a>
-
             </div>
         </div>
     </div>
