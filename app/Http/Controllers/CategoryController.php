@@ -129,4 +129,5 @@ class CategoryController extends Controller
         // Redirection vers la vue des catégories
         return redirect()->route('categories.index');
     }
+
 }
