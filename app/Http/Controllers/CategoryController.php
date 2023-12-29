@@ -124,6 +124,8 @@ class CategoryController extends Controller
         $category = Categorie::findOrFail($id);
         $category->delete();
 
+        session()->flash('success', 'La catégorie a été supprimé avec succès.');
+
         // Redirection vers la vue des catégories
         return redirect()->route('categories.index');
     }

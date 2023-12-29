@@ -24,7 +24,11 @@
             
                 <!-- Basic Bootstrap Table -->
                 <div class="card">
-                    <h5 class="card-header">Catégories</h5>
+                    <h5 class="card-header">Catégories
+                        <a href="categories/create" class="btn btn-danger">Ajouter</a>
+
+                    </h5>
+
                     <div class="table-responsive text-nowrap">
                         <table class="table">
                             <thead>

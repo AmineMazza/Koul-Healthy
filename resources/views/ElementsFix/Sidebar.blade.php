@@ -83,16 +83,9 @@
               <ul class="menu-sub">
                <li class="menu-item">
                   <a href="{{ route('categories.index') }}" class="menu-link">
-                      <div data-i18n="Without menu">Liste des categories </div>
+                      <div data-i18n="Without menu">Gestion des catégories </div>
                   </a>
               </li>
-              
-              
-                <li class="menu-item">
-                  <a href="{{ route('categories.create') }}" class="menu-link">
-                    <div data-i18n="Without navbar"> L'ajout d'une catgorie</div>
-                  </a>
-                </li>
               </ul>
             </li>
             
