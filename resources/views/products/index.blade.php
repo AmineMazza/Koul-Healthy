@@ -10,6 +10,19 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <h4 class="py-3 mb-4"><span class="text-muted fw-light">Produits / </span>Tous les produits</h4>
                     <!-- Basic Bootstrap Table -->
+
+                    @if(session('error'))
+                      <div class="alert alert-danger">
+                          {{ session('error') }}
+                      </div>
+                     @endif
+                
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     <div class="card">
                       <h5 class="card-header">Produits                     
                         <a href="products/create" class="btn btn-danger">Ajouter</a>
@@ -22,6 +35,7 @@
                               <th>Image</th>
                               <th>Titre</th>
                               <th>Description</th>
+                              <th>Categorie</th>
                               <th>prix</th>
                               <th>Actions</th>
                             </tr>
@@ -32,16 +46,13 @@
                                       {{-- <td>{{$product->id}}</td> --}}
                                         <td>
                                           {{-- {{$product->image}} --}}
-                                          @if ($product->image)
-                                              @foreach (json_decode($product->image) as $image)
-                                                  <img style="width: 180px; height: 130px; border-radius: 5%;" src="{{ asset('storage/' . $image) }}">
-                                              @endforeach
-                                          @endif
-                                      
-                                      
+                                          {{-- <img src="{{ asset('img/products/' . $product->image) }}" alt="{{ $product->title }}" style="max-width: 100px; max-height: 100px;"> --}}
+                                          <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" style="width: 180px; height: 130px; border-radius: 5%;">
                                         </td>
                                         <td>{{Str::limit($product->title,20)}}</td>
                                         <td>{{Str::limit($product->description,50)}}</td>
+                                        {{-- <td>{{ optional($product->category)->titre }}</td> --}}
+                                        <td>{{$product->category->titre}}</td>
                                         <td>{{$product->price}} Dh</td>
                                     <td>
                                         <div class="dropdown">
@@ -62,6 +73,7 @@
                             @endforeach
                           </tbody>
                         </table>
+                        {{ $products->links() }}
                       </div>
                     </div>
                     <!--/ Basic Bootstrap Table -->
