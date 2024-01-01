@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Exception; // Ajoutez cette ligne en haut du fichier
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Models\Category; // Assurez-vous d'utiliser le modèle approprié
@@ -30,21 +30,32 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $filename = '';
+        try {
+            $filename = '';
     
-        if ($request->hasFile('image')) {
-            $filename = '/assets/img/' . time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/img/'), $filename);
+            if ($request->hasFile('image')) {
+                $filename = '/assets/img/' . time() . '.' . $request->image->extension();
+                $request->image->move(public_path('assets/img/'), $filename);
+            }
+    
+            // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
+            $category = Categorie::create([
+                'titre' => $request->input('titre'), // Utilisez input pour récupérer la valeur du champ titre
+                'image' => $filename,
+            ]);
+            
+            // Produit ajouté avec succès, définissez un message flash
+            session()->flash('success', 'Catégorie ajouté avec succès');
+    
+            // Redirigez l'utilisateur vers une autre page, par exemple la liste des produits
+            return redirect()->route('categories.index')->with('success', 'Catégorie créé avec succès');
+        } catch (Exception $e) {
+            // En cas d'erreur, définissez un message flash d'erreur
+            session()->flash('error', 'Une erreur s\'est produite lors de l\'ajout du Catégorie.');
+    
+            // Redirection vers la vue des catégories
+            return redirect()->route('categories.index');
         }
-    
-        // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
-        $category = Categorie::create([
-            'titre' => $request->input('titre'), // Utilisez input pour récupérer la valeur du champ titre
-            'image' => $filename,
-        ]);
-    
-        // Redirection vers la vue des catégories
-        return redirect()->route('categories.index');
     }
     
 
@@ -98,7 +109,8 @@ class CategoryController extends Controller
             'image' => $filename,
             // Mettez à jour d'autres attributs au besoin
         ]);
-    
+        session()->flash('success', 'La catégorie a été mise à jour avec succès.');
+
         // Redirection vers la vue des catégories
         return redirect()->route('categories.index');
     }
@@ -112,7 +124,25 @@ class CategoryController extends Controller
         $category = Categorie::findOrFail($id);
         $category->delete();
 
+        session()->flash('success', 'La catégorie a été supprimé avec succès.');
+
         // Redirection vers la vue des catégories
         return redirect()->route('categories.index');
     }
+
+public function bulkDelete(Request $request)
+{
+    $selectedCategories = $request->input('selectedCategories');
+
+    if (!empty($selectedCategories)) {
+        // Suppression des catégories selectionnées selon l'ID categorie
+        Categorie::whereIn('id', $selectedCategories)->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Catégories supprimées avec succès.');
+    } else {
+        return redirect()->route('categories.index')->with('error', 'Veuillez sélectionner au moins une catégorie à supprimer.');
+    }
+}
+
+
 }
