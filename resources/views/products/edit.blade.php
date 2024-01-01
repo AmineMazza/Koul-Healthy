@@ -25,10 +25,12 @@
         <div class="mb-3">
             <label for="category_id" class="form-label">Catégorie</label>
             <select name="category_id" required  class="form-select" id="category_id" aria-label="Default select example">
-                    {{-- <option value="{{ $product->$category->id }}">{{ $category->titre }}</option> --}}
-                     <option value="{{$product->category->id}}">{{$product->category->titre}}</option>
-                </select>
-        </div>
+                @foreach($categories as $category)
+                    {{-- <option value="{{ $category->id }}">{{ $category->titre }}</option> --}}
+                    <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->titre }}</option>
+                @endforeach
+            </select>
+          </div>
         <div class="mb-3">
             <label for="price" class="form-label">Prix</label>
             <input type="number" step="0.01" class="form-control"  value="{{ $product->price }}" id="price" name="price" required>

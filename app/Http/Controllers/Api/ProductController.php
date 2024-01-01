@@ -35,6 +35,7 @@ class ProductController extends Controller
             $product->image = $request->image;
             $product->description = $request->description;
             $product->price = $request->price;
+            $product->category_id = $request->category_id;
 
             $product->save();
     
@@ -49,25 +50,30 @@ class ProductController extends Controller
       
     }
 
-    public function update(EditProductRequest $request, $id){
-        try {
-            $product = Product::find($id);
+    public function update(EditProductRequest $request, $id)
+{
+    try {
+        $product = Product::find($id);
 
-            $product->title = $request->title;
-            $product->image = $request->image;
-            $product->description = $request->description;
-            $product->price = $request->price;
-    
-            $product->save();
-    
-            return response()->json([
-                "status"=>"200, Produit Modifié avec succés",
-                "data"=>$product,
-            ]);       
-        } 
-        catch (Exception $e) {
-            return response()->json($e) ;
+        if (!$product) {
+            return response()->json(['error' => 'Product not found.'], 404);
         }
+
+        $product->title = $request->title;
+        $product->image = $request->image;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+
+        $product->save();
+
+        return response()->json([
+            "status" => "200, Product updated successfully",
+            "data" => $product,
+        ]);
+    } catch (Exception $e) {
+        return response()->json(['error' => 'An error occurred while updating the product.'], 500);
+    }
       
     }
 }
