@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'address' => fake()->address(),
             'tel' => fake()->phoneNumber(),
             'city' => fake()->city(),
-            'role' => fake()->randomElement(['user','GérantResto','admin' ]),            
+            'role' => fake()->randomElement(['user']),            
             'remember_token' => Str::random(10),
         ];
     }

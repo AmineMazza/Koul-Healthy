@@ -24,7 +24,12 @@ class EditProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'title' => 'require'
+            'title' => 'required|string',
+            'image' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+
         ];
     }
 

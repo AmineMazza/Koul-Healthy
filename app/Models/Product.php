@@ -15,7 +15,7 @@ class Product extends Model
         'description',
         'price',
         'category_id',
-        'user_id', 
+        'gerant_admin_id', 
     ];
 
     public function category()
@@ -29,8 +29,7 @@ class Product extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function gerantAdmin()
-    {
+    public function gerantAdmin() {
         return $this->belongsTo(GerantAdmin::class);
     }
 
