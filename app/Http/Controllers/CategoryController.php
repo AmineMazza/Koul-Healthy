@@ -130,15 +130,12 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-
-    // CategoryController.php
-
 public function bulkDelete(Request $request)
 {
     $selectedCategories = $request->input('selectedCategories');
 
     if (!empty($selectedCategories)) {
-        // Perform the bulk delete operation here using the IDs in $selectedCategories
+        // Suppression des catégories selectionnées selon l'ID categorie
         Categorie::whereIn('id', $selectedCategories)->delete();
 
         return redirect()->route('categories.index')->with('success', 'Catégories supprimées avec succès.');
