@@ -75,5 +75,6 @@ Route::middleware(['admin'])->group(function () {
 
     // Route pour supprimer une catégorie
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::delete('/categories', [CategoryController::class, 'bulkDelete'])->name('categories.bulkDelete');
 });
 

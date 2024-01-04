@@ -86,7 +86,10 @@ class ProductController extends Controller
     public function edit(Request $request, $id)
     {
         $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        $categories = categorie::all();  // Récupérez toutes les catégories
+
+        return view('products.edit', compact('product', 'categories'));
+
 
     }
 
@@ -100,6 +103,8 @@ class ProductController extends Controller
             'image' =>'image',
             'description' => 'required',
             'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',  // Validation pour la catégorie
+
         ]);
         $product = Product::find($id);
         $product->update($request->all());
