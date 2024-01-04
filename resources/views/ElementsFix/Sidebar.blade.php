@@ -67,12 +67,17 @@
 
           <ul class="menu-inner py-1 mt-2">
             <!-- Dashboards -->
+           <ul> 
+
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Dashboards">Dashboard</div>
+              <a href="{{ route('home.index') }}" class="menu-link-toggle d-flex align-items-center">
+                  <i class="tf-icons bx bx-home-circle me-2"></i>
+                  <div data-i18n="Dashboards">Dashboard</div>
               </a>
-            </li>
+          </li>
+           </ul>
+          
+          
             @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
