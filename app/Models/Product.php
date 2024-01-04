@@ -29,6 +29,11 @@ class Product extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function gerantAdmin()
+    {
+        return $this->belongsTo(GerantAdmin::class);
+    }
+
 
     public function lineCommandes()
     {

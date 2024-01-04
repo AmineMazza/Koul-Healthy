@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GerantAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class UserController extends Controller
         //pour afficher juste 5 elements par page :
         // $users = User::paginate(5);
         
-        $users = User::all();
+        $users = GerantAdmin::paginate(5);
         return view('users.show', compact('users'));
     }
 

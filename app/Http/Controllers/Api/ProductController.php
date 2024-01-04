@@ -13,7 +13,9 @@ class ProductController extends Controller
 {   
 
     public function getProduct(){
+
         $products = Product::all();
+        
         return response()->json([
             "products"=>$products,
             "status"=>"200, Kulchi Nadi",
@@ -48,13 +50,24 @@ class ProductController extends Controller
     }
 
     public function update(EditProductRequest $request, $id){
-        $product = Product::find($id);
+        try {
+            $product = Product::find($id);
 
-        $product->title = $request->title;
-        $product->image = $request->image;
-        $product->description = $request->description;
-        $product->price = $request->price;
-
-        $product->save();
+            $product->title = $request->title;
+            $product->image = $request->image;
+            $product->description = $request->description;
+            $product->price = $request->price;
+    
+            $product->save();
+    
+            return response()->json([
+                "status"=>"200, Produit Modifié avec succés",
+                "data"=>$product,
+            ]);       
+        } 
+        catch (Exception $e) {
+            return response()->json($e) ;
+        }
+      
     }
 }

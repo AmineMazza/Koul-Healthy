@@ -52,7 +52,7 @@
         <!-- SideBar -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="{{ route('home.index') }}" class="app-brand-link">
+            <a href="/dashboard" class="app-brand-link">
               <!-- <link rel="logo" type="image" href="assets/img/logo-koulHealty/KoulHelthy.jpg" /> -->
               <img src="{{ asset('assets/img/logo-koulHealty/KoulHealthy.png') }}" style="height: 129px; width: 150px; margin-left: 20px" alt="">
               {{-- <span class="app-brand-text demo menu-text ms-2">Koul Healthy</span>  --}}
@@ -65,15 +65,15 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1">
+          <ul class="menu-inner py-1 mt-2">
             <!-- Dashboards -->
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Dashboards">Dashboard</div>
               </a>
             </li>
-
+            @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-category-alt'></i>
@@ -81,25 +81,24 @@
               </a>
 
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
-                    <div data-i18n="Without menu">Catégorie 1</div>
+               <li class="menu-item">
+                  <a href="{{ route('categories.index') }}" class="menu-link">
+                      <div data-i18n="Without menu">Liste des categories </div>
                   </a>
-                </li>
+              </li>
+              
+              
                 <li class="menu-item">
-                  <a href="#" class="menu-link">
-                    <div data-i18n="Without navbar">Catégorie 2</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
-                    <div data-i18n="Container">Catégorie 3</div>
+                  <a href="{{ route('categories.create') }}" class="menu-link">
+                    <div data-i18n="Without navbar"> L'ajout d'une catgorie</div>
                   </a>
                 </li>
               </ul>
             </li>
-
+            
+            @endif
             <!-- Layouts -->
+            
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-bowl-rice'></i>
@@ -114,7 +113,7 @@
                 </li>
               </ul>
             </li>
-
+            
             <!-- Front Pages -->
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -131,6 +130,7 @@
             </li>
 
             <!-- Users Pages -->
+            @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user'></i>
@@ -144,6 +144,7 @@
                 </li>
               </ul>
           </li>
+          @endif
           </ul>
         </aside>
         <!-- / SideBar -->
