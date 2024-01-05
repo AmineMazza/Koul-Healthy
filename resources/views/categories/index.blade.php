@@ -71,11 +71,6 @@
                                                         <a class="dropdown-item" href="{{ route('categories.edit', $category->id) }}">
                                                             <i class="bx bx-edit-alt me-1"></i> Modifier
                                                         </a>
-                                                        
-                                                        <!-- Supprimer -->
-                                                        <a href="javascript:void(0);" class="dropdown-item delete-single" data-id="{{ $category->id }}">
-                                                            <i class="bx bx-trash me-1"></i>  Supprimer
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
