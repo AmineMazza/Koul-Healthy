@@ -20,6 +20,8 @@
                           <th>Id</th>
                           <th>Nom</th>
                           <th>email</th>
+                          <th>Tel</th>
+                          <th>Ville</th>
                           <th>role</th>
                           <th>Actions</th>
                         </tr>
@@ -31,6 +33,8 @@
                                   <td>{{$user->id}}</td>
                                 <td>{{Str::limit($user->name,20)}}</td>
                                 <td> {{$user->email}}</td>
+                                <td> {{$user->tel}}</td>
+                                <td> {{$user->city}}</td>
                                 <td><span class="badge bg-label-primary me-1"> {{$user->role}}</span></td>
                                 <td>
                                     <div class="dropdown">
