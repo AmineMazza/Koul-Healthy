@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LineCommandeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 
@@ -47,6 +48,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get("/products/{id}/delete", [ProductController::class,'destroy'])->name('product.delete');
 
     Route::get('/commandes', [CommandeController::class,'index'])->name('commandes.index');
+    Route::get('/line_commandes', [LineCommandeController::class,'index'])->name('line_commandes.index');
+
 
     Route::get("/users",[UserController::class,"getUser"])->name("users")->middleware('admin');
 

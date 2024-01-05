@@ -122,7 +122,10 @@
                 <ul class="menu-sub">
                   <li class="menu-item">
                     <a href="{{ route('commandes.index') }}" class="menu-link">
-                      <div data-i18n="Checkout">Tous les commandes</div>
+                      <div data-i18n="Checkout">Les commandes</div>
+                    </a>
+                    <a href="{{ route('line_commandes.index') }}" class="menu-link">
+                      <div data-i18n="Checkout">Lines de commandes</div>
                     </a>
                   </li>
                 </ul>
@@ -130,6 +133,20 @@
 
             <!-- Users Pages -->
             @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user'></i>
+                <div data-i18n="Front Pages">Utilisateurs</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('usersMobile') }}" class="menu-link">
+                    <div data-i18n="Checkout">les utilisateurs - Mobile</div>
+                  </a>
+                </li>
+              </ul>
+          </li>
+          
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user'></i>
@@ -143,19 +160,6 @@
                 </li>
               </ul>
           </li>
-          <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class='menu-icon tf-icons bx bxs-user'></i>
-              <div data-i18n="Front Pages">Utilisateurs</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="{{ route('usersMobile') }}" class="menu-link">
-                  <div data-i18n="Checkout">les utilisateurs - Mobile</div>
-                </a>
-              </li>
-            </ul>
-        </li>
           @endif
           </ul>
         </aside>
