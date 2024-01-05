@@ -50,6 +50,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get("/users",[UserController::class,"getUser"])->name("users")->middleware('admin');
 
+    Route::get("/usersMobile",[UserController::class,"getUserMobile"])->name("usersMobile")->middleware('admin');
 });
 
 

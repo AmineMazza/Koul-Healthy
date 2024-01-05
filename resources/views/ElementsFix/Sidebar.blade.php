@@ -16,7 +16,8 @@
     {{-- <title>@yield('name') </title> --}}
     
     <!-- Favicon -->
-    <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
+    {{-- <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" /> --}}
+    <link rel="icon" type="image" href="KoulHelthy.jpg" />
 
     <meta name="description" content="" />
 
@@ -65,7 +66,7 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1 mt-2">
+          <ul class="menu-inner py-1 mt-4">
             <!-- Dashboards -->
            <ul> 
 
@@ -137,11 +138,24 @@
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="{{ route('users') }}" class="menu-link">
-                    <div data-i18n="Checkout">Les gérants de resto</div>
+                    <div data-i18n="Checkout">Les gérants - web</div>
                   </a>
                 </li>
               </ul>
           </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class='menu-icon tf-icons bx bxs-user'></i>
+              <div data-i18n="Front Pages">Utilisateurs</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{ route('usersMobile') }}" class="menu-link">
+                  <div data-i18n="Checkout">les utilisateurs - Mobile</div>
+                </a>
+              </li>
+            </ul>
+        </li>
           @endif
           </ul>
         </aside>
