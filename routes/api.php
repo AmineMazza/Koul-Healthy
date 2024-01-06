@@ -20,6 +20,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['middleware'=>['auth:sanctum']] ,function() {
+        // Pour recuperer la liste des produits :
+        Route::get("/products",[ProductController::class,"getProduct"])->name("products");
     Route::post("/logout", [AuthApiController::class,"logout"]);
 });
 
@@ -28,8 +30,7 @@ Route::post("/register",[AuthApicontroller::class,"register"]);
 Route::post("/login",[AuthApicontroller::class,"login"]);
 
 
-    // Pour recuperer la liste des produits :
-    Route::get("/products",[ProductController::class,"getProduct"])->name("products");
+
     // Creer un produit :
     Route::post('/products/create', [ProductController::class,'create']);
 
@@ -51,7 +52,7 @@ Route::post("/login",[AuthApicontroller::class,"login"]);
 
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
    
-});
+// });
