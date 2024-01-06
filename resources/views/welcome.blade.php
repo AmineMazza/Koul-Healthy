@@ -16,8 +16,9 @@
                             <span style="color: rgb(0, 255, 85);">Koul</span>
                             <span style="color: #fc5c11;">Healthy</span></h5>
                             <p class="mb-4">
-                            Vous avez réalisé <span class="fw-medium">62% </span> de ventes en plus aujourd'hui.
+                                Votre application de suivi et de gestion a enregistré une augmentation des performances exceptionnelle <span class="fw-medium"></span>
                             </p>
+                            <!-- code CA-->
                         </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
@@ -38,52 +39,43 @@
                 <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
                     <div class="card">
                         <div class="row row-bordered g-0">
-                            <div class="col-md-8">
-                            <h5 class="card-header m-0 me-2 pb-3">Revenu total</h5>
-                            <div id="totalRevenueChart" class="px-2"></div>
-                            </div>
-                            <div class="col-md-4">
-                            <div class="card-body">
-                                <div class="text-center">
-                                <div class="dropdown">
-                                    <button
-                                    class="btn btn-sm btn-outline-primary dropdown-toggle"
-                                    type="button"
-                                    id="growthReportId"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    2023
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                                    <a class="dropdown-item" href="javascript:void(0);">2023</a>
-                                    </div>
-                                </div>
-                                </div>
+                            
                             </div>
                             <div id="growthChart"></div>
-                            <div class="text-center fw-medium pt-3 mb-2">62% Croissance de votre restaurant</div>
-
-                            <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                                <div class="d-flex">
-                                <div class="me-2">
-                                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                            <div class="text-center fw-medium pt-3 mb-2">
+                                <div class="col-md-12 mb-4">
+                                    <div class="row mx-auto">
+                                        @php
+                                            $colors = ['#4CAF50', '#689F38', '#8BC34A', '#FF9800', '#FF5722', '#FFA726', '#FB8C00', '#E65100', '#D84315', '#BF360C'];
+                                            $colorIndex = 0;
+                                        @endphp
+                                
+                                        @foreach($categoriesStats as $category)
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card" style="width: 80%; height: 80px; overflow: hidden;">
+                                                    <div class="card-body" style="background: linear-gradient(to right, {{ $colors[$colorIndex] }}, {{ $colors[$colorIndex + 1] }}); padding: 1rem;">
+                                                        <h6 class="card-text text-dark" style="font-size: 1.2rem;">{{ $category->category_name }}</h6>
+                                                        <p class="card-text text-white" style="font-size: 1rem;">{{ $category->product_count }} Produits</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            @php
+                                                // Increment the color index, and reset to 0 if it exceeds the array length
+                                                $colorIndex += 2;
+                                                if ($colorIndex >= count($colors) - 1) {
+                                                    $colorIndex = 0;
+                                                }
+                                            @endphp
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <small>2023</small>
-                                    <h6 class="mb-0">10.000 DH</h6>
+                                
                                 </div>
-                                </div>
-                                <div class="d-flex">
-                                <div class="me-2">
-                                    <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <small>2022</small>
-                                    <h6 class="mb-0">4.000 DH</h6>
-                                </div>
-                                </div>
+                                
                             </div>
+
+                            
                             </div>
                         </div>
                     </div>
@@ -95,5 +87,4 @@
     </div> 
 
    <!-- Page JS -->
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
      

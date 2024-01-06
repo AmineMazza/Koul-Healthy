@@ -29,35 +29,41 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        try {
-            $filename = '';
-    
-            if ($request->hasFile('image')) {
-                $filename = '/assets/img/' . time() . '.' . $request->image->extension();
-                $request->image->move(public_path('assets/img/'), $filename);
-            }
-    
-            // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
-            $category = Categorie::create([
-                'titre' => $request->input('titre'), // Utilisez input pour récupérer la valeur du champ titre
-                'image' => $filename,
-            ]);
+{
+    try {
+        $filename = '';
+
+        if ($request->hasFile('image')) {
+            $filename = '/assets/img/category/' . time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img/category/'), $filename);
+        } else {
+            // Si aucune image n'est fournie, définissez un message d'erreur
+            session()->flash('error', 'Veuillez sélectionner une image pour la catégorie.');
             
-            // Produit ajouté avec succès, définissez un message flash
-            session()->flash('success', 'Catégorie ajouté avec succès');
-    
-            // Redirigez l'utilisateur vers une autre page, par exemple la liste des produits
-            return redirect()->route('categories.index')->with('success', 'Catégorie créé avec succès');
-        } catch (Exception $e) {
-            // En cas d'erreur, définissez un message flash d'erreur
-            session()->flash('error', 'Une erreur s\'est produite lors de l\'ajout du Catégorie.');
-    
             // Redirection vers la vue des catégories
             return redirect()->route('categories.index');
         }
+
+        // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
+        $category = Categorie::create([
+            'titre' => $request->input('titre'), // Utilisez input pour récupérer la valeur du champ titre
+            'image' => $filename,
+        ]);
+
+        // Catégorie ajoutée avec succès, définissez un message flash
+        session()->flash('success', 'Catégorie ajoutée avec succès');
+
+        // Redirigez l'utilisateur vers une autre page, par exemple la liste des produits
+        return redirect()->route('categories.index')->with('success', 'Catégorie créée avec succès');
+    } catch (Exception $e) {
+        // En cas d'erreur, définissez un message flash d'erreur
+        session()->flash('error', 'Une erreur s\'est produite lors de l\'ajout de la catégorie.');
+
+        // Redirection vers la vue des catégories
+        return redirect()->route('categories.index');
     }
-    
+}
+
 
     /**
      * Display the specified resource.
@@ -100,8 +106,8 @@ class CategoryController extends Controller
                 unlink(public_path($filename));
             }
     
-            $filename = '/assets/img/' . time() . '.' . $request->new_image->extension();
-            $request->new_image->move(public_path('assets/img/'), $filename);
+            $filename = '/assets/img/category/' . time() . '.' . $request->new_image->extension();
+            $request->new_image->move(public_path('assets/img/category/'), $filename);
         }
     
         $category->update([
@@ -130,12 +136,13 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+
 public function bulkDelete(Request $request)
 {
     $selectedCategories = $request->input('selectedCategories');
 
     if (!empty($selectedCategories)) {
-        // Suppression des catégories selectionnées selon l'ID categorie
+        // suppression par ID categorie
         Categorie::whereIn('id', $selectedCategories)->delete();
 
         return redirect()->route('categories.index')->with('success', 'Catégories supprimées avec succès.');

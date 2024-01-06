@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\categorie;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,8 +18,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
-    }
+        $categoriesStats = DB::table('categories')
+        ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+        ->select(
+            'categories.id as category_id',
+            'categories.titre as category_name',
+            DB::raw('count(products.id) as product_count')
+        )
+        ->groupBy('categories.id', 'categories.titre')
+        ->get();
+        
+    return view('welcome', ['categoriesStats' => $categoriesStats]);    }
 
 
      public function login()
