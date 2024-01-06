@@ -12,7 +12,8 @@ class commande extends Model
 
     protected $fillable = [
         'date_commande',
-        'etat_commande'
+        'statut_commande',
+        'user_id'
     ];
 
     public function user()

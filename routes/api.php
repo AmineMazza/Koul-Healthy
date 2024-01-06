@@ -48,7 +48,7 @@ Route::group(['middleware'=>['auth:sanctum']] ,function() {
     // Pour recuperer la liste des commandes :
         Route::get("/commandes",[CommandesController::class,"getCommandes"])->name("commandes");
     // Creer un commandes :
-        Route::post('/commandes/create', [CommandesController::class,'create']);
+        Route::post('/commande/create', [CommandesController::class,'create']);
     // Modifier un commandes :
         Route::put('/commandes/edit/{id}', [CommandesController::class,'update']);
 

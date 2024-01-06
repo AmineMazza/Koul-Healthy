@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\LineCommande;
+use Exception;
 use Illuminate\Http\Request;
 
 class LineCommandesController extends Controller
@@ -24,9 +25,26 @@ class LineCommandesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+        try {
+            $LineCommande = new LineCommande();
+
+            $LineCommande->qte_commandée = $request->qte_commandée;
+            $LineCommande->Price_total_commande = $request->Price_total_commande;
+            $LineCommande->produit_id  = $request->produit_id ;
+            $LineCommande->commande_id = $request->commande_id ;
+
+            $LineCommande->save();
+    
+            return response()->json([
+                "status"=>"200, LineCommande Ajouté avec succés.",
+                "data"=>$LineCommande,
+            ]);       
+        } 
+        catch (Exception $e) {
+            return response()->json($e) ;
+        }
+      
     }
 
     /**
