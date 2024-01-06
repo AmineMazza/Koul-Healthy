@@ -17,8 +17,9 @@ class LineCommandesController extends Controller
         $LineCommandes = LineCommande::all();
         
         return response()->json([
+            "Code Status"=>"200",
+            "status"=>"Kulchi Affiché",
             "LineCommandes"=>$LineCommandes,
-            "status"=>"200, Kulchi Nadi",
         ]);
     }
 
@@ -37,7 +38,8 @@ class LineCommandesController extends Controller
             $LineCommande->save();
     
             return response()->json([
-                "status"=>"200, LineCommande Ajouté avec succés.",
+                "Code Status"=>"200",
+                "status"=>"LineCommande Ajouté avec succés.",
                 "data"=>$LineCommande,
             ]);       
         } 

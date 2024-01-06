@@ -18,8 +18,9 @@ class CommandesController extends Controller
         $Commandes = commande::all();
         
         return response()->json([
+            "Code Status"=>"200",
+            "status"=>"Kulchi Affiché",
             "Commandes"=>$Commandes,
-            "status"=>"200, Kulchi Nadi",
         ]);
     }
 
@@ -37,7 +38,8 @@ class CommandesController extends Controller
             $commande->save();
     
             return response()->json([
-                "status"=>"200, commande Ajouté avec succés.",
+                "Code Status"=>"200",
+                "status"=>"LineCommande Ajouté avec succés.",
                 "data"=>$commande,
             ]);       
         } 
