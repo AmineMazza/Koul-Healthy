@@ -34,8 +34,8 @@ class CategoryController extends Controller
         $filename = '';
 
         if ($request->hasFile('image')) {
-            $filename = '/assets/img/' . time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/img/'), $filename);
+            $filename = '/assets/img/category/' . time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img/category/'), $filename);
         } else {
             // Si aucune image n'est fournie, définissez un message d'erreur
             session()->flash('error', 'Veuillez sélectionner une image pour la catégorie.');
@@ -106,8 +106,8 @@ class CategoryController extends Controller
                 unlink(public_path($filename));
             }
     
-            $filename = '/assets/img/' . time() . '.' . $request->new_image->extension();
-            $request->new_image->move(public_path('assets/img/'), $filename);
+            $filename = '/assets/img/category/' . time() . '.' . $request->new_image->extension();
+            $request->new_image->move(public_path('assets/img/category/'), $filename);
         }
     
         $category->update([
