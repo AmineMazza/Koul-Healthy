@@ -25,7 +25,6 @@ use App\Http\Controllers\Api\LineCommandesController;
 //route vers auth API(login et register)
 Route::post('/register',[AuthApicontroller::class,"register"]);
 Route::post('/login',[AuthApicontroller::class,"login"]);
-Route::post('/logout', [AuthApiController::class,"logout"]);
 
 
 Route::group(['middleware'=>['auth:sanctum']] ,function() {
@@ -58,7 +57,9 @@ Route::group(['middleware'=>['auth:sanctum']] ,function() {
         Route::post('/LineCommande/create', [LineCommandesController::class,'create']);
     // Modifier un LineCommande :
         Route::put('/LineCommande/edit/{id}', [LineCommandesController::class,'update']);
-
+    
+    // Pour Logout :
+        Route::post('/logout', [AuthApiController::class,"logout"]);
 
 
      Route::get('/user', function (Request $request) {
