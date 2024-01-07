@@ -31,8 +31,8 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              {{-- <th>Id</th> --}}
                               <th>Image</th>
+                              <th>Id</th>
                               <th>Titre</th>
                               <th>Description</th>
                               <th>Categorie</th>
@@ -43,12 +43,12 @@
                           <tbody class="table-border-bottom-0">
                             @foreach ($products as $product)
                                     <tr>
-                                      {{-- <td>{{$product->id}}</td> --}}
                                         <td>
                                           {{-- {{$product->image}} --}}
                                           {{-- <img src="{{ asset('img/products/' . $product->image) }}" alt="{{ $product->title }}" style="max-width: 100px; max-height: 100px;"> --}}
                                           <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" style="width: 180px; height: 130px; border-radius: 5%;">
                                         </td>
+                                        <td>{{$product->id}}</td>
                                         <td>{{Str::limit($product->title,20)}}</td>
                                         <td>{{Str::limit($product->description,50)}}</td>
                                         {{-- <td>{{ optional($product->category)->titre }}</td> --}}

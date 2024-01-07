@@ -16,7 +16,8 @@
     {{-- <title>@yield('name') </title> --}}
     
     <!-- Favicon -->
-    <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" />
+    {{-- <link rel="icon" type="image" href="{{ asset('assets/img/logo-koulHealty/KoulHelthy.jpg') }}" /> --}}
+    <link rel="icon" type="image" href="KoulHelthy.jpg" />
 
     <meta name="description" content="" />
 
@@ -65,14 +66,19 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1 mt-2">
+          <ul class="menu-inner py-1 mt-4">
             <!-- Dashboards -->
+           <ul> 
+
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Dashboards">Dashboard</div>
+              <a href="{{ route('home.index') }}" class="menu-link-toggle d-flex align-items-center">
+                  <i class="tf-icons bx bx-home-circle me-2"></i>
+                  <div data-i18n="Dashboards">Dashboard</div>
               </a>
-            </li>
+          </li>
+           </ul>
+          
+          
             @if(Auth::guard('gerants')->check() && (Auth::guard('gerants')->user()->isAdmin()))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -116,7 +122,10 @@
                 <ul class="menu-sub">
                   <li class="menu-item">
                     <a href="{{ route('commandes.index') }}" class="menu-link">
-                      <div data-i18n="Checkout">Tous les commandes</div>
+                      <div data-i18n="Checkout">Les commandes</div>
+                    </a>
+                    <a href="{{ route('line_commandes.index') }}" class="menu-link">
+                      <div data-i18n="Checkout">Lines de commandes</div>
                     </a>
                   </li>
                 </ul>
@@ -127,12 +136,26 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user'></i>
+                <div data-i18n="Front Pages">Utilisateurs</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('usersMobile') }}" class="menu-link">
+                    <div data-i18n="Checkout">les utilisateurs - Mobile</div>
+                  </a>
+                </li>
+              </ul>
+          </li>
+          
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user'></i>
                 <div data-i18n="Front Pages">Gérants</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="{{ route('users') }}" class="menu-link">
-                    <div data-i18n="Checkout">Les gérants de resto</div>
+                    <div data-i18n="Checkout">Les gérants - web</div>
                   </a>
                 </li>
               </ul>

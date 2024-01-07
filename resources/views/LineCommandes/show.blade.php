@@ -1,37 +1,39 @@
 @include('ElementsFix.Sidebar')
 @include('ElementsFix.Navbar')
 
-<title>Commandes</title>
+<title>LineCommandes</title>
 
 <div class="layout-page"> 
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y"Body - >
             
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Commandes / </span>Tous les commandes</h4>
+                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">LineCommandes / </span>Tous les LineCommandes</h4>
       
                     <!-- Basic Bootstrap Table -->
                     <div class="card">
-                      <h5 class="card-header">Commandes</h5>
+                      <h5 class="card-header">LineCommandes</h5>
                       <div class="table-responsive text-nowrap">
                         <table class="table">
                           <thead>
                             <tr>
-                              <th>Id Commande</th>
-                              <th>date_commande</th>
-                              <th>statut_commande</th>
-                              <th>Id User</th>
+                              <th>Id</th>
+                              <th>qte_commandée</th>
+                              <th>Price_total_commande</th>
+                              <th>produit_id</th>
+                              <th>commande_id</th>
                               <th>Actions</th>
                             </tr>
                           </thead>
                           <tbody class="table-border-bottom-0">
-                            @foreach ($commandes as $commande)
+                            @foreach ($LineCommandes as $LineCommande)
                                     <tr>
-                                        <td>{{$commande->id}}</td>
-                                        <td>{{$commande->date_commande}}</td>
-                                        <td><span class="badge bg-label-primary me-1">{{$commande->statut_commande}}</span></td>
-                                        <td>{{$commande->user_id}}</td>
-                                        <td>
+                                        <td>{{$LineCommande->id}}</td>
+                                        <td>{{$LineCommande->qte_commandée}} Produits</td>
+                                        <td>{{$LineCommande->Price_total_commande}} Dh</td>
+                                        <td>{{$LineCommande->produit_id}}</td>
+                                        <td>{{$LineCommande->commande_id}}</td>
+                                    <td>
                                         <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="bx bx-dots-vertical-rounded"></i>
