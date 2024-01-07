@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\RegisterUser;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\HttpResponses;
@@ -12,30 +12,51 @@ class AuthApicontroller extends Controller
 {
     
     use HttpResponses;
-    public function register(Request $request)
+    public function register(RegisterUser $request)
 {
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8',
-        'address' => 'nullable|string',
-        'tel' => 'nullable|string',
-        'city' => 'nullable|string',
+    $user = new User();
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
+    $user->address = $request->address;
+    $user->tel = $request->tel;
+    $user->city = $request->city;
+
+    $user->save();
+    $token = $user->createToken('authToken')->plainTextToken;
+    return response()->json([
+        "Statut Code" => "200",
+        'message' => 'User registered successfully', 'user' => $user,'token' => $token,
+        "user"=>$user,
     ]);
 
-    $user = User::create([
-        'name' => $validatedData['name'],
-        'email' => $validatedData['email'],
-        'password' => bcrypt($validatedData['password']),
-        'address' => $validatedData['address'],
-        'tel' => $validatedData['tel'],
-        'city' => $validatedData['city'],
-        'role' => 'user', // Rôle par défaut pour l'inscription
-    ]);
-    $token = $user->createToken('authToken')->plainTextToken;
-    return $this->success(
-        ['message' => 'User registered successfully', 'user' => $user,'token' => $token]);
 }
+
+//     public function register(Request $request)
+// {
+//     $validatedData = $request->validate([
+//         'name' => 'required|string|max:255',
+//         'email' => 'required|string|email|max:255|unique:users',
+//         'password' => 'required|string|min:8',
+//         'address' => 'nullable|string',
+//         'tel' => 'nullable|string',
+//         'city' => 'nullable|string',
+//     ]);
+
+//     $user = User::create([
+//         'name' => $validatedData['name'],
+//         'email' => $validatedData['email'],
+//         'password' => bcrypt($validatedData['password']),
+//         'address' => $validatedData['address'],
+//         'tel' => $validatedData['tel'],
+//         'city' => $validatedData['city'],
+//         'role' => 'user',
+//     ]);
+//     $token = $user->createToken('authToken')->plainTextToken;
+//     return $this->success(
+//         ['message' => 'User registered successfully', 'user' => $user,'token' => $token]);
+// }
 
 
 
