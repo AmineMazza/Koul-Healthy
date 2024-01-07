@@ -19,6 +19,14 @@ class UserController extends Controller
         return view('users.show', compact('users'));
     }
 
+    public function getUserMobile(){
+        //pour afficher juste 5 elements par page :
+        // $users = User::paginate(5);
+        
+        $users = User::paginate(10);
+        return view('users.showUserMobile', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
