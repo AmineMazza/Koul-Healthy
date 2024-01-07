@@ -22,7 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
        
-           \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\StartSession::class,
            
        
     ];
@@ -76,4 +76,8 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminAccessMiddleware::class,
         
     ];
+    //protected $routeMiddleware = [
+        // ...
+       // 'auth:sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+   // ];
 }
