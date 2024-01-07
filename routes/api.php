@@ -22,13 +22,27 @@ use App\Http\Controllers\Api\LineCommandesController;
 */
 
 
+
+Route::group(['middleware'=>['auth:sanctum']] ,function() {
+    Route::post("/logout", [AuthApiController::class,"logout"]);
+    Route::get("/products",[ProductController::class,"getProduct"])->name("products");
+});
+
+
 //route vers auth API(login et register)
 Route::post('/register',[AuthApicontroller::class,"register"]);
 Route::post('/login',[AuthApicontroller::class,"login"]);
 Route::post('/logout', [AuthApiController::class,"logout"]);
 
 
+
 Route::group(['middleware'=>['auth:sanctum']] ,function() {
+
+    //Pour recuperer la liste des produits :
+   
+    //Creer un produit :
+    Route::post('/products/create', [ProductController::class,'create']);
+
 
      // Pour recuperer la liste des produits :
      Route::get("/products",[ProductController::class,"getProduct"])->name("products");

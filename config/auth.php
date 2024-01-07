@@ -49,6 +49,10 @@ return [
             'driver' => 'session',
             'provider' => 'gerant_admins',
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users', // Assurez-vous que cela pointe vers votre fournisseur d'utilisateurs approprié
+        ],
     ],
 
     /*

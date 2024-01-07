@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\HttpResponses;
@@ -49,7 +50,7 @@ public function login(Request $request)
     ]);
     $user = User::where('email', $credentials['email'])->first();
 
-     //Lorsque vous appelez Auth::attempt($credentials), Laravel vérifie si les identifiants correspondent à un utilisateur existant dans votre base de données. Les paramètres $credentials sont généralement un tableau associatif contenant les identifiants, tels que l'email et le mot de passe.
+     //Lorsque vous appelez Auth::attempt($credentials), Laravel vérifie si les identifiants correspondent à un utilisateur existant dans votre base de données. Les paramètres $credentials sont généralement un tableau associatif contenant les identifiants, tels que l'email et le mo
     if (!$user || !Hash::check($credentials['password'], $user->password)) {
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
@@ -58,6 +59,17 @@ public function login(Request $request)
     $token = $user->createToken('authToken')->plainTextToken;
 
     
+
+     $user = User::where('email', $credentials['email'])->first();
+
+     if (!$user || !Hash::check($credentials['password'], $user->password)) {
+         return response()->json(['message' => 'Invalid credentials'], 401);
+     }
+ 
+     // Authentification réussie, générez le jeton
+     $token = $user->createToken('authToken')->plainTextToken;
+ 
+
         return $this->success([
             'message' => 'Login successful',
             'user' => $user,
