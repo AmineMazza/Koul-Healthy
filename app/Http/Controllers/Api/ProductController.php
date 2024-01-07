@@ -8,8 +8,6 @@ use App\Http\Requests\EditProductRequest;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-
 
 class ProductController extends Controller
 {   
@@ -51,42 +49,6 @@ class ProductController extends Controller
         }
       
     }
-
-    public function store(Request $request): JsonResponse
-{
-    try {
-        $filename = '';
-
-        if ($request->hasFile('image')) {
-            $filename = '/assets/img/products/' . time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/img/products/'), $filename);
-        }
-
-        // Utilisez la méthode create avec les attributs pour créer une nouvelle instance et l'insérer dans la base de données
-        $product = Product::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'category_id' => $request->input('category_id'),
-            'price' => $request->input('price'),
-            'image' => $filename,
-        ]);
-
-        // Produit ajouté avec succès, retournez une réponse JSON
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Produit ajouté avec succès',
-            'data' => $product,
-        ], 201); // 201 Created
-
-    } catch (\Exception $e) {
-        // En cas d'erreur, retournez une réponse JSON avec un message d'erreur
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Une erreur s\'est produite lors de l\'ajout du produit.',
-        ], 500); // 500 Internal Server Error
-    }
-}
-
 
     public function update(EditProductRequest $request, $id)
 {

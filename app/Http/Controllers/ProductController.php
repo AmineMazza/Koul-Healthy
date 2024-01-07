@@ -41,7 +41,7 @@ class ProductController extends Controller
             $filename = '';
     
             if ($request->hasFile('image')) {
-                $filename = '/assets/img/products/' . time() . '.' . $request->image->extension();
+                $filename = asset('/assets/img/products/' . time() . '.' . $request->image->extension());
                 $request->image->move(public_path('assets/img/products/'), $filename);
             }
         
