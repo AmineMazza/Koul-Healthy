@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 class AuthApicontroller extends Controller
 {
     
@@ -49,19 +50,21 @@ public function login(Request $request)
     ]);
 
      //Lorsque vous appelez Auth::attempt($credentials), Laravel vérifie si les identifiants correspondent à un utilisateur existant dans votre base de données. Les paramètres $credentials sont généralement un tableau associatif contenant les identifiants, tels que l'email et le mot de passe.
-    if(Auth::attempt($credentials)) {
-        
-        $user = User::where('email', $credentials['email'])->first(); // Récupère l'utilisateur après l'authentification
-        $token = $user->createToken('authToken')->plainTextToken;
+     $user = User::where('email', $credentials['email'])->first();
 
+     if (!$user || !Hash::check($credentials['password'], $user->password)) {
+         return response()->json(['message' => 'Invalid credentials'], 401);
+     }
+ 
+     // Authentification réussie, générez le jeton
+     $token = $user->createToken('authToken')->plainTextToken;
+ 
         return $this->success([
             'message' => 'Login successful',
             'user' => $user,
             'token' => $token
         ]);
-    } else {
-        return $this->error('Invalid credentials', 401);
-    }
+    
 }
 
 public function logout(Request $request)

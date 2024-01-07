@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 
 Route::group(['middleware'=>['auth:sanctum']] ,function() {
     Route::post("/logout", [AuthApiController::class,"logout"]);
+    Route::get("/products",[ProductController::class,"getProduct"])->name("products");
 });
 
 //route vers auth API(login et register)
@@ -29,7 +30,7 @@ Route::post("/login",[AuthApicontroller::class,"login"]);
 
 
     // Pour recuperer la liste des produits :
-    Route::get("/products",[ProductController::class,"getProduct"])->name("products");
+   
     // Creer un produit :
     Route::post('/products/create', [ProductController::class,'create']);
 
