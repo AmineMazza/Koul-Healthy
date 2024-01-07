@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 class AuthApicontroller extends Controller
 {
     
@@ -47,30 +47,32 @@ public function login(Request $request)
         'email' => 'required|string|email',
         'password' => 'required|string',
     ]);
+    $user = User::where('email', $credentials['email'])->first();
 
      //Lorsque vous appelez Auth::attempt($credentials), Laravel vérifie si les identifiants correspondent à un utilisateur existant dans votre base de données. Les paramètres $credentials sont généralement un tableau associatif contenant les identifiants, tels que l'email et le mot de passe.
-    if(Auth::attempt($credentials)) {
-        
-        $user = User::where('email', $credentials['email'])->first(); // Récupère l'utilisateur après l'authentification
-        $token = $user->createToken('authToken')->plainTextToken;
+    if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        return response()->json(['message' => 'Invalid credentials'], 401);
+    }
 
+    // Authentification réussie, générez le jeton
+    $token = $user->createToken('authToken')->plainTextToken;
+
+    
         return $this->success([
             'message' => 'Login successful',
             'user' => $user,
             'token' => $token
         ]);
-    } else {
-        return $this->error('Invalid credentials', 401);
-    }
+    
 }
 
 public function logout(Request $request)
 {
     // Récupère l'utilisateur actuellement authentifié
-    $user = Auth::user();
+    $user = $request->user();
 
-    // Révoque le token d'authentification actuel de l'utilisateur
-    $user->currentAccessToken()->delete();
+    // Révoque tous les tokens d'authentification de l'utilisateur
+    $user->tokens()->delete();
 
     return $this->success(['message' => 'User logged out successfully']);
 }
