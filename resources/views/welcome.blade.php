@@ -69,11 +69,15 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script>
+        // Vérifier si les couleurs sont déjà stockées dans le stockage local
+        var storedColors = localStorage.getItem('categoryColors');
+        var colors = storedColors ? JSON.parse(storedColors) : [];
+    
         var data = {
             labels: {!! $categoriesStats->pluck('category_name')->toJson() !!},
             datasets: [{
                 data: {!! $categoriesStats->pluck('product_count')->toJson() !!},
-                backgroundColor: generateRandomColors({{ $categoriesStats->count() }}),
+                backgroundColor: generateColors(colors, {{ $categoriesStats->count() }}),
             }],
         };
     
@@ -82,7 +86,6 @@
             maintainAspectRatio: false,
         };
     
-        // Attendre que le DOM soit chargé avant d'initialiser le graphique
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById('categoryChart').getContext('2d');
             new Chart(ctx, {
@@ -92,14 +95,23 @@
             });
         });
     
-        // Fonction pour générer des couleurs aléatoires
-        function generateRandomColors(count) {
-            var colors = [];
+        function generateColors(existingColors, count) {
+            var newColors = [];
+    
             for (var i = 0; i < count; i++) {
-                var color = getRandomColor();
-                colors.push(color);
+                // Si une couleur existe déjà pour la catégorie, l'utiliser
+                if (existingColors[i]) {
+                    newColors.push(existingColors[i]);
+                } else {
+                    var color = getRandomColor();
+                    newColors.push(color);
+                }
             }
-            return colors;
+    
+            // Stocker les nouvelles couleurs dans le stockage local
+            localStorage.setItem('categoryColors', JSON.stringify(newColors));
+    
+            return newColors;
         }
     
         function getRandomColor() {
@@ -111,6 +123,7 @@
             return color;
         }
     </script>
+    
     
 
 </body>
