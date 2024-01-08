@@ -25,7 +25,7 @@
                                         <span style="color: #fc5c11;">Healthy</span>
                                     </h5>
                                     <p class="mb-4">
-                                        Votre application de suivi et de gestion a enregistré une augmentation des performances exceptionnelle
+                                        Notre application de suivi et de gestion a enregistré une augmentation des performances exceptionnelle
                                         <span class="fw-medium"></span>
                                     </p>
                                     <!-- Votre contenu spécifique ici -->
