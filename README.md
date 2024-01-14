@@ -8,7 +8,7 @@ Clone repo
 git clone https://github.com/AmineMazza/Koul-Healthy.git
 ```
 
-composer update/install
+composer install
 
 ```
 composer install
