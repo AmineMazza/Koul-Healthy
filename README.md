@@ -14,6 +14,12 @@ composer install
 composer install
 ```
 
+composer update
+
+```
+composer update
+```
+
 Générez une nouvelle clé de cryptage
 
 ```
