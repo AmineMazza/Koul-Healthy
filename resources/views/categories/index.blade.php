@@ -78,6 +78,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $categories->links() }}
+
                         </form>
                     </div>
                 </div>
